@@ -16,7 +16,9 @@ main:
     lw  $t3, ival           # $t3 = i;
     lw  $t4, jval           # $t4 = j;
 
-    bne $t3, $t4, false     # if (i != j) jump to false
+    # bne $t3, $t4, false     if (i != j) jump to false
+    slt $t5, $t3, $t4       # $t5 = (i < j); this is for false = 0 or true = 1
+    beq $t5, $zero, false   # if ($t5 == 0) jump to false
     add $t0, $t1, $t2       # $t0 = $t1 + $t2
     j endif                 
 
